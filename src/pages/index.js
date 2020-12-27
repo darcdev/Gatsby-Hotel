@@ -1,22 +1,35 @@
 import React from "react"
-import { Link } from "gatsby"
+import { css } from "@emotion/react"
+import Layout from "../components/Layout"
+import ImagenHotel from "../components/ImagenHotel"
+import ContenidoInicio from "../components/ContenidoInicio"
+import useHabitaciones from "../hooks/useHabitaciones"
+import HabitacionPreview from "../components/HabitacionPreview"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+const IndexPage = () => {
+  const habitaciones = useHabitaciones()
+  return (
+    <Layout>
+      <ImagenHotel />
+      <ContenidoInicio />
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+      <h2
+        css={css`
+          text-align: center;
+          margin-top: 5rem;
+          font-size: 3rem;
+        `}
+      >
+        Nuestras Habitaciones
+      </h2>
+
+      <ul>
+        {habitaciones.map(habitacion => (
+          <HabitacionPreview />
+        ))}
+      </ul>
+    </Layout>
+  )
+}
 
 export default IndexPage
