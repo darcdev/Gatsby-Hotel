@@ -38,7 +38,7 @@ const IndexPage = () => {
 
       <ListadoHabitaciones>
         {habitaciones.map(habitacion => (
-          <HabitacionPreview habitacion={habitacion} />
+          <HabitacionPreview key={habitacion.id} habitacion={habitacion} />
         ))}
       </ListadoHabitaciones>
     </Layout>
